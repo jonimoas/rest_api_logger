@@ -12,13 +12,13 @@ db = TinyDB('db.json')
 app = Flask(__name__)
 
 
-@app.route('/<path:path>', methods=['GET', 'POST'])
+@app.route('/<path:path>', methods=['GET', 'POST', 'DELETE', 'PUT', 'PATCH'])
 def main(path):
     method = request.method
     args = request.args.to_dict(flat=False)
     headers = dict(request.headers)
     body = request.get_json()
-    response = requests.request(method, os.environ["API_TO_WATCH"]+"users", params=args, stream=True,
+    response = requests.request(method, os.environ["API_TO_WATCH"]+path, params=args, stream=True,
                                 headers=headers, allow_redirects=False, data=json.dumps(body))
     response_body = None
     response_headers = dict(response.headers)
