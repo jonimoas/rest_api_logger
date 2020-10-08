@@ -1,3 +1,4 @@
 Flask==1.0.2
 requests==2.24.0
+waitress==1.4.3
 tinydb==4.2.0
